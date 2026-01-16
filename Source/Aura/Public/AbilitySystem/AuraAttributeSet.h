@@ -63,6 +63,33 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute,float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const  FGameplayEffectModCallbackData& Data) override;
 	
+	/*
+	*Primary Attributes
+	*/
+	 
+	UPROPERTY (BlueprintReadOnly,Replicated = OnRep_Strength,Category = "Primary Attributes" )
+	FGameplayAttributeData Strength;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Strength);
+	
+	UPROPERTY (BlueprintReadOnly,Replicated = OnRep_Intelligence,Category = "Primary Attributes" )
+	FGameplayAttributeData Intelligence;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Intelligence);
+	
+	UPROPERTY (BlueprintReadOnly,Replicated = OnRep_Resillience,Category = "Primary Attributes" )
+	FGameplayAttributeData Resilience;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Resilience);
+	
+	UPROPERTY (BlueprintReadOnly,Replicated = OnRep_Vigor,Category = "Primary Attributes" )
+	FGameplayAttributeData Vigor;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Vigor);
+	
+	
+	
+	
+	/*
+	 * virtual attribute 
+	 */
+	
 	//virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 	
 	UPROPERTY (BlueprintReadOnly,Replicated = OnRep_Health,Category = "Virtual Attributes" )
@@ -94,6 +121,17 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
 	
+	UFUNCTION()
+	void OnRep_Strength(const FGameplayAttributeData& OldStrength) const;
+		
+	UFUNCTION()
+	void OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const;
+	
+	UFUNCTION()
+	void OnRep_Resilience(const FGameplayAttributeData& OldResilience) const;
+	
+	UFUNCTION()
+	void OnRep_Vigor(const FGameplayAttributeData& OldVigor) const;
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data,FEffectProperties& Props) const;
 };
