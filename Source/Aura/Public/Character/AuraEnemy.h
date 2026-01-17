@@ -23,7 +23,7 @@ public:
 	/** End Enemy Interface */
 	
 	/** CombatInterface */
-	virtual int32 GetLevel() override;
+	virtual int32 GetPlayerLevel() override;
 	/** End CombatInterface */
 	
 protected:
@@ -33,5 +33,5 @@ protected:
 //private:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Character Class Defaults")
-	int32 Level;
+	int32 Level = 1;
 };

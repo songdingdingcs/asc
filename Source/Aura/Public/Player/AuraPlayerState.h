@@ -24,9 +24,9 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const{return AttributeSet;}
-	/** CombatInterface */
-	virtual int32 GetLevel() {return Level;};
-	/** End CombatInterface */
+	
+	FORCEINLINE int32 GetPlayerLevel() const{return Level;};
+	
 protected:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
