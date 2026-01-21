@@ -12,6 +12,7 @@
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+//DECLARE_DELEGATE_RetVal(FGameplayAttribute,FAttributeInitSignature);
 
 USTRUCT()
 struct FEffectProperties
@@ -46,6 +47,11 @@ struct FEffectProperties
 	ACharacter* TargetCharacter = nullptr;
 };
 
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFunPtr;
+template<class T>
+using TStaticFunPtr = typename TBaseStaticDelegateInstance<T ,FDefaultDelegateUserPolicy>::FFuncPtr;
+
+
 #define ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \
 	GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
@@ -69,6 +75,9 @@ class AURA_API UAuraAttributeSet : public UAttributeSet
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute,float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const  FGameplayEffectModCallbackData& Data) override;
 	
+	TMap<FGameplayTag,TStaticFunPtr<FGameplayAttribute()>> TagsToAttributes;
+	
+	//TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr FunctionPointer;
 	/*
 	*Primary Attributes
 	*/
